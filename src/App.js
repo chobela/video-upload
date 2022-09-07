@@ -14,6 +14,8 @@ class App extends Component {
         const video = e.result;
         console.log(video);
 
+        this.setState({ selectedFile: video });
+
         const formData = new FormData();
 
         // Update the formData object
@@ -46,7 +48,7 @@ class App extends Component {
       return (
         <div>
           <br />
-          <h4></h4>
+          <h4>Upload Failed</h4>
         </div>
       );
     }
