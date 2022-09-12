@@ -1,23 +1,15 @@
 import { useState } from "react";
-import FFMPEG from "react-ffmpeg";
 import axios from "axios";
 
 const Upload = () => {
   const [videoData, setvideoData] = useState();
+  const [link, setLink] = useState();
 
   async function onFileChange(e) {
     e.preventDefault();
     const file = e.target.files[0];
-
-    await FFMPEG.process(
-      file,
-      '-metadata location="" -metadata location-eng="" -metadata author="" -c:v copy -c:a copy',
-      function (e) {
-        const video = e.result;
-        console.log(video);
-        setvideoData(video);
-      }.bind(this)
-    );
+    console.log(file);
+    setvideoData(file);
   }
 
   const onFileUpload = (e) => {
@@ -31,7 +23,7 @@ const Upload = () => {
       data: formdata,
       headers: { "Content-Type": "multipart/form-data" },
     }).then((response) => {
-      console.log(response);
+      setLink(response.data);
     });
   };
 
@@ -62,6 +54,7 @@ const Upload = () => {
           </span>
         </div>
       </form>
+      {link ? <p>Your Compressed file has been compressed!</p> : <></>}
     </div>
   );
 };
