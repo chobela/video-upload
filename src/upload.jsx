@@ -54,7 +54,7 @@ const Upload = () => {
           </span>
         </div>
       </form>
-      {link ? <p>Your Compressed file has been compressed!</p> : <></>}
+      {link ? <p>Your file has been compressed!</p> : <></>}
     </div>
   );
 };
